@@ -1,0 +1,67 @@
+.re-memory-card-game {
+  position: relative;
+  &__container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  &__item {
+    position: relative;
+    cursor: pointer;
+
+    .front {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      z-index: 0;
+      transform: rotateY(180deg);
+      animation: flip-back 0.3s 1 forwards ease-in-out;
+    }
+    .back {
+      opacity: 1;
+      z-index: 1;
+      transform: rotateY(0deg);
+      background-color:#fffbf4;
+      border-radius:5px;
+      animation: flip-front 0.3s 1 forwards, ease-in-out;
+    }
+
+    &.is-open {
+      .front {
+        animation: flip-front 0.3s 1 forwards, ease-in-out;
+      }
+      .back {
+        animation: flip-back 0.3s 1 forwards, ease-in-out;
+      }
+    }
+  }
+}
+
+@keyframes flip-front{
+  0%{
+      opacity: 0;
+      z-index: 0;
+      transform: rotateY(180deg);
+  }
+  100% {
+      opacity: 1;
+      z-index: 1;
+      transform: rotateY(0deg);
+  }
+}
+
+
+@keyframes flip-back{
+  0%{
+      opacity: 1;
+      z-index: 1;
+      transform: rotateY(0deg);
+  }
+  100% {
+      opacity: 0;
+      z-index: 0;
+      transform: rotateY(180deg);
+  }
+}

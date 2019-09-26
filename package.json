@@ -1,0 +1,49 @@
+{
+  "name": "@re/memory-card-game",
+  "version": "1.0.0",
+  "description": "RE活動共用的一些工具",
+  "author": "david.jian",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "homepage": "http://192.168.11.250:10080/re-activity-package/activity-utilities",
+  "scripts": {
+    "clean": "rm -rf dist && rm -rf build",
+    "init": "mkdir dist",
+    "build-parcel": "parcel build demo/index.html --out-dir=build ",
+    "prebuild": "npm run clean && npm run init && npm run build-parcel",
+    "build": "node_modules/typescript/bin/tsc && cp build/*.css dist/index.min.css",
+    "dev": "cp -r demo/images build/images && parcel demo/index.html --out-dir=build",
+    "prepublish": "npm run build",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://192.168.11.250:10080/re-activity-package/activity-utilities.git"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/jquery": "^3.3.31",
+    "@types/node": "^12.0.2",
+    "@types/qrcode": "^1.3.2",
+    "autoprefixer": "^9.6.1",
+    "jest": "^24.9.0",
+    "parcel-bundler": "^1.12.3",
+    "postcss-modules": "^1.4.1",
+    "sass": "^1.23.0-module.beta.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.3"
+  },
+  "dependencies": {
+    "@re/utilities": "^1.1.4",
+    "jquery": "1.12.4",
+    "lib": "^4.0.5",
+    "moment": "^2.22.0",
+    "tslint": "^5.19.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
