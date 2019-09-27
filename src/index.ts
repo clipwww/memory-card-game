@@ -165,6 +165,7 @@ export const createMemoryCardGame = (config: ConfigVM) => {
       const $moment = moment('1970-01-01T00:00').add(time, 'seconds');
 
       dispatchEvent(EventEnum.Timing, {
+        time,
         mm: $moment.format('mm'),
         ss: $moment.format('ss'),
       });

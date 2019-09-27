@@ -51,7 +51,7 @@ const { $el, addEventListener, removeEventListener } = createMemoryCardGame(conf
 |---|---|---|
 | `init` | 牌組初始化（render & bind event）完成 | { $el: `JQuery<HTMLElement>`, cards: `CardVM[]` } |
 | `imageLoaded` | 圖片全部載入後<br/>原先在container上的class `is-loading` 會拿掉 | { images: `HTMLImageElement[]` } |
-| `timing` | 計時的秒數每次+1時 | { mm: `string`, ss: `string` } |
+| `timing` | 計時的秒數每次+1時 | { time: `number`, mm: `string`, ss: `string` } |
 | `clickCard` | 每次點擊卡牌時<br/>圖片尚未完全載入的話不會觸發 | { <br/>e: `JQuery.ClickEvent<HTMLElement, null, HTMLElement, HTMLElement>`,<br/> $card: `JQuery<HTMLElement>`,<br/> card: `CardVM`,<br/> cards: `CardVM[]`<br/> } |
 | `openCard` | 牌被翻開時 |  { <br/>$card: `JQuery<HTMLElement>`,<br/> card: `CardVM`,<br/> cards: `CardVM[]`<br/> } |
 | `cardChecked` | 兩張牌是同一張，驗證完成 | { openCards: `CardVM[]`, cards: `CardVM[]` } |
