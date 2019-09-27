@@ -117,7 +117,6 @@ export const createMemoryCardGame = (config: ConfigVM) => {
 
     const [one, two] = openCards;
     const isOk = one.name === two.name;
-    console.log(one, two);
 
     if (isOk) {
       // 兩張牌一樣 更改驗證狀態
