@@ -1,5 +1,6 @@
 export enum EventEnum {
   Init = 'init',
+  ImageLoaded = 'imageLoaded',
   Timing = 'timing',
   ClickCard = 'clickCard',
   OpenCard = 'openCard',
@@ -11,6 +12,9 @@ export interface ConfigVM {
   el: string;
   cards: CardVM[];
   backImgSrc: string;
+  columns?: number; // 一列幾張牌 default = 4
+  checkFailedTime?: number; // 驗證失敗後留給使用者看牌面的時間（時間到就翻回去） default = 300
+  openClass?: string; // 牌組翻開時的class  default = 'is-open'
 }
 
 export interface CardVM {

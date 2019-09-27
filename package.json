@@ -1,12 +1,12 @@
 {
   "name": "@re/memory-card-game",
   "version": "1.0.0",
-  "description": "RE活動共用的一些工具",
+  "description": "翻牌記憶遊戲",
   "author": "david.jian",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "homepage": "http://192.168.11.250:10080/re-activity-package/activity-utilities",
+  "homepage": "http://192.168.11.250:10080/re-activity-package/memory-card-game",
   "scripts": {
     "clean": "rm -rf dist && rm -rf build",
     "init": "mkdir dist",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://192.168.11.250:10080/re-activity-package/activity-utilities.git"
+    "url": "http://192.168.11.250:10080/re-activity-package/memory-card-game.git"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",

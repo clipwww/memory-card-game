@@ -1,9 +1,9 @@
-import { createMemoryCardGame } from '../src/index';
-import { EventEnum } from '../src/view-models';
+import { createMemoryCardGame, EventEnum } from '../src/index';
 
 const { addEventListener } = createMemoryCardGame({
   el: '#app',
   backImgSrc: './images/img-card-f.png',
+  columns: 4,
   cards: [
     { id: '1', name: 'b01', imgSrc: './images/img-card-b01.png' },
     { id: '2', name: 'b01', imgSrc: './images/img-card-b01.png' },
@@ -30,5 +30,5 @@ const { addEventListener } = createMemoryCardGame({
 // });
 
 addEventListener(EventEnum.GameOver, ({ cards, time }) => {
-  console.log(cards, time);
+  alert(`遊戲結束，花費:${time}秒`);
 });

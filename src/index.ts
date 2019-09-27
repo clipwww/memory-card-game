@@ -2,12 +2,21 @@ import $ from 'jquery';
 import moment from 'moment';
 
 import { loadImage, createEventManager } from './lib';
-import { ConfigVM, EventEnum } from './view-models';
+import { ConfigVM, CardVM, EventEnum } from './view-models';
+
+
+
+export {
+  ConfigVM,
+  EventEnum,
+  CardVM,
+};
+
 export const createMemoryCardGame = (config: ConfigVM) => {
-  const { el, backImgSrc } = config;
+  const { el, backImgSrc, columns = 4, checkFailedTime = 300, openClass = 'is-open' } = config;
   const $el: JQuery<HTMLElement> = $(el);
 
-  const { addEventListener, dispatchEvent } = createEventManager();
+  const { addEventListener, removeEventListener, dispatchEvent } = createEventManager();
   const cards = config.cards.map(card => {
     return {
       ...card,
@@ -15,14 +24,11 @@ export const createMemoryCardGame = (config: ConfigVM) => {
       isOpen: false,
     };
   });
-  const checkTime = 300; // 驗證花費時間
-  const openClass = 'is-open';
 
   let timeInterval: NodeJS.Timer = null; // 計時interval
   let time = 0; // 所花秒數
 
   let isLoading = false; // 遊戲載入中
-  let isTiming = false; // 是否計時中
   let isWait = false; // 是否等待驗證
 
   const init = (): void => {
@@ -32,27 +38,31 @@ export const createMemoryCardGame = (config: ConfigVM) => {
     render();
     bindEvent();
 
-    const promiseArr: Array<Promise<any>> = cards.map(card => loadImage(card.imgSrc));
-    Promise.all(promiseArr).then(res => {
+    const promiseArr: Array<Promise<HTMLImageElement>> = cards.map(card => loadImage(card.imgSrc)).concat(loadImage(backImgSrc));
+    Promise.all(promiseArr).then(images => {
       setLoading(false);
-      dispatchEvent(EventEnum.Init);
+      dispatchEvent(EventEnum.ImageLoaded, { images });
     });
+
+    dispatchEvent(EventEnum.Init, { $el, cards });
   };
 
   const render = (): void => {
     const htmlString = cards.map((card, index) => {
       return `
-      ${index % 4 === 0 ? '<tr>' : ''}
+      ${index % columns === 0 ? '<tr>' : ''}
         <td selector="card" class="re-memory-card-game__item" data-id="${card.id}">
           <div class="front"><img src="${card.imgSrc}" alt="${card.name}" draggable="false"></div>
           <div class="back"><img src="${backImgSrc}" alt="${card.name}" draggable="false"></div>
         </td>
-      ${index % 4 === 3 ? '</tr>' : ''}
+      ${index % columns === (columns - 1) ? '</tr>' : ''}
       `;
     }).join('');
 
     $el.html(`
-      <table class="re-memory-card-game__container">${htmlString}</table>
+      <table class="re-memory-card-game__container">
+        <tbody>${htmlString}</tbody>
+      </table>
     `);
   };
 
@@ -65,8 +75,8 @@ export const createMemoryCardGame = (config: ConfigVM) => {
       return;
     }
 
-    if (!isTiming) {
-      // 尚未計時
+    if (!timeInterval) {
+      // 尚未開始計時
       timingStart();
     }
 
@@ -76,8 +86,10 @@ export const createMemoryCardGame = (config: ConfigVM) => {
     const isOpen = $card.hasClass(openClass);
 
     dispatchEvent(EventEnum.ClickCard, {
-      $el: $card,
+      e,
+      $card,
       card: cards[index],
+      cards,
     });
 
     if (!isWait && !isOpen && index >= 0) {
@@ -85,8 +97,9 @@ export const createMemoryCardGame = (config: ConfigVM) => {
       cards[index].isOpen = true;
       $card.addClass(openClass);
       dispatchEvent(EventEnum.OpenCard, {
-        $el: $card,
+        $card,
         card: cards[index],
+        cards,
       });
     }
 
@@ -129,7 +142,7 @@ export const createMemoryCardGame = (config: ConfigVM) => {
       // 檢查完畢，如果是失敗的等一下在render（就算錯了也要讓使用者看一下牌）
       setTimeout(() => {
         initCardStatus();
-      }, checkTime);
+      }, checkFailedTime);
     }
   };
 
@@ -147,7 +160,6 @@ export const createMemoryCardGame = (config: ConfigVM) => {
   };
 
   const timingStart = (): void => {
-    isTiming = true;
     timeInterval = setInterval(() => {
       time++;
       const $moment = moment('1970-01-01T00:00').add(time, 'seconds');
@@ -161,7 +173,6 @@ export const createMemoryCardGame = (config: ConfigVM) => {
 
   const onEndGame = (): void => {
     clearInterval(timeInterval);
-    console.log(time);
     dispatchEvent(EventEnum.GameOver, {
       cards,
       time,
@@ -186,5 +197,6 @@ export const createMemoryCardGame = (config: ConfigVM) => {
   return {
     $el,
     addEventListener,
+    removeEventListener,
   };
 };

@@ -1,13 +1,19 @@
 .re-memory-card-game {
   position: relative;
   &__container {
+    max-width: 650px;
     width: 100%;
-    padding: 10px;
   }
 
   &__item {
     position: relative;
     cursor: pointer;
+
+    .front, .back {
+      img {
+        max-width: 100%;
+      }
+    }
 
     .front {
       position: absolute;

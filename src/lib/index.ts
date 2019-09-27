@@ -34,6 +34,20 @@ export const createEventManager = () => {
     }
   };
 
+  const removeEventListener = (type: string, handler: Function): void => {
+    // 刪除監聽事件
+    type = type.toLowerCase();
+
+    if (!eventRegistry.hasOwnProperty(type)) {
+      eventRegistry[type] = [];
+    }
+
+    const findIndex = eventRegistry[type].indexOf(handler);
+    if (findIndex < 0) {
+      eventRegistry[type].splice(findIndex, 1);
+    }
+  };
+
   const dispatchEvent = (type: string, ...arg: any): void => {
     // 觸發事件
     type = type.toLowerCase();
@@ -51,6 +65,7 @@ export const createEventManager = () => {
 
   return {
     addEventListener,
+    removeEventListener,
     dispatchEvent,
   };
 };
