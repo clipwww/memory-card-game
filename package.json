@@ -1,6 +1,6 @@
 {
   "name": "@re/memory-card-game",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "翻牌記憶遊戲",
   "author": "david.jian",
   "license": "MIT",
@@ -22,24 +22,24 @@
     "url": "http://192.168.11.250:10080/re-activity-package/memory-card-game.git"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.18",
-    "@types/jquery": "^3.3.31",
-    "@types/node": "^12.0.2",
+    "@types/jest": "^24.9.1",
+    "@types/jquery": "^3.3.38",
+    "@types/node": "^12.12.42",
     "@types/qrcode": "^1.3.2",
-    "autoprefixer": "^9.6.1",
+    "autoprefixer": "^9.8.0",
     "jest": "^24.9.0",
-    "parcel-bundler": "^1.12.3",
-    "postcss-modules": "^1.4.1",
-    "sass": "^1.23.0-module.beta.1",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.4.3"
+    "parcel-bundler": "^1.12.4",
+    "postcss-modules": "^1.5.0",
+    "sass": "^1.26.5",
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.9.3"
   },
   "dependencies": {
-    "@re/utilities": "^1.1.4",
+    "@re/utilities": "^1.1.11",
     "jquery": "1.12.4",
-    "lib": "^4.0.5",
-    "moment": "^2.22.0",
-    "tslint": "^5.19.0"
+    "lib": "^4.2.0",
+    "moment": "^2.26.0",
+    "tslint": "^5.20.1"
   },
   "browserslist": [
     "> 1%",

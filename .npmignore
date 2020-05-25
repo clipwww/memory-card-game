@@ -3,6 +3,7 @@ node_modules/
 
 src/
 demo/
+.cache/
 
 .*.swp
 ._*
