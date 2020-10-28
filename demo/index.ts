@@ -25,9 +25,9 @@ const { addEventListener } = createMemoryCardGame({
 });
 
 
-// addEventListener(EventEnum.Timing, ({ mm, ss }) => {
-//   console.log(mm, ss);
-// });
+addEventListener(EventEnum.Timing, ({ mm, ss }) => {
+  console.log(mm, ss);
+});
 
 addEventListener(EventEnum.GameOver, ({ cards, time }) => {
   alert(`遊戲結束，花費:${time}秒`);

@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import { loadImage, createEventManager } from './lib';
 import { ConfigVM, CardVM, EventEnum } from './view-models';
@@ -38,7 +38,7 @@ export const createMemoryCardGame = (config: ConfigVM) => {
     render();
     bindEvent();
 
-    const promiseArr: Array<Promise<HTMLImageElement>> = cards.map(card => loadImage(card.imgSrc)).concat(loadImage(backImgSrc));
+    const promiseArr: Promise<HTMLImageElement>[] = cards.map(card => loadImage(card.imgSrc)).concat(loadImage(backImgSrc));
     Promise.all(promiseArr).then(images => {
       setLoading(false);
       dispatchEvent(EventEnum.ImageLoaded, { images });
@@ -67,7 +67,7 @@ export const createMemoryCardGame = (config: ConfigVM) => {
   };
 
   const bindEvent = (): void => {
-    $('[selector="card"]').click(onCardClick);
+    $('[selector="card"]').on('click', onCardClick);
   };
 
   const onCardClick = (e: JQuery.ClickEvent<HTMLElement, null, HTMLElement, HTMLElement>): void => {
@@ -161,7 +161,7 @@ export const createMemoryCardGame = (config: ConfigVM) => {
   const timingStart = (): void => {
     timeInterval = setInterval(() => {
       time++;
-      const $moment = moment('1970-01-01T00:00').add(time, 'seconds');
+      const $moment = dayjs('1970-01-01T00:00').add(time, 'second');
 
       dispatchEvent(EventEnum.Timing, {
         time,

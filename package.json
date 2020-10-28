@@ -1,6 +1,6 @@
 {
   "name": "@re/memory-card-game",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "翻牌記憶遊戲",
   "author": "david.jian",
   "license": "MIT",
@@ -23,23 +23,23 @@
   },
   "devDependencies": {
     "@types/jest": "^24.9.1",
-    "@types/jquery": "^3.3.38",
-    "@types/node": "^12.12.42",
-    "@types/qrcode": "^1.3.2",
-    "autoprefixer": "^9.8.0",
+    "@types/jquery": "^3.5.3",
+    "@types/node": "^12.19.2",
+    "@types/qrcode": "^1.3.5",
+    "autoprefixer": "^9.8.6",
     "jest": "^24.9.0",
     "parcel-bundler": "^1.12.4",
     "postcss-modules": "^1.5.0",
-    "sass": "^1.26.5",
+    "sass": "^1.27.0",
     "ts-jest": "^24.3.0",
-    "typescript": "^3.9.3"
+    "typescript": "^4.0.5"
   },
   "dependencies": {
     "@re/utilities": "^1.1.11",
+    "dayjs": "^1.9.4",
     "jquery": "1.12.4",
-    "lib": "^4.2.0",
-    "moment": "^2.26.0",
-    "tslint": "^5.20.1"
+    "lib": "^4.3.0",
+    "tslint": "^6.1.3"
   },
   "browserslist": [
     "> 1%",
