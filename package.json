@@ -35,7 +35,6 @@
     "typescript": "^4.0.5"
   },
   "dependencies": {
-    "@re/utilities": "^1.1.11",
     "dayjs": "^1.9.4",
     "jquery": "1.12.4",
     "lib": "^4.3.0",
