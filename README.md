@@ -7,7 +7,7 @@ npm i @re/memory-card-game
 
 ## Example
 ```typescript
-import { createMemoryCardGame, EventEnum } from '@re/memory-card-game';
+import { createMemoryCardGame, EventEnum , shuffle } from '@re/memory-card-game';
 import '@re/memory-card-game/dist/index.min.css'; // 也可自行定義css
 
 const { $el, addEventListener, removeEventListener } = createMemoryCardGame(config);
@@ -26,6 +26,7 @@ const config = {
     // 順序請自行打亂
     // 順序請自行打亂
     // 順序請自行打亂 (很重要所以說三次)
+    // 可以用 shuffle(): (CardVM[]) => CardVM[] 
     { 
       id: '1', // 唯一識別值
       name: 'b01', // 卡牌名稱（同樣卡片的卡牌需要有相同名稱
@@ -34,7 +35,8 @@ const config = {
   ],
   columns?: 4, // 一列幾張牌 default = 4
   checkFailedTime?: 300, // 驗證失敗後留給使用者看牌面的時間（時間到就翻回去） default = 300(毫秒)
-  openClass?: 'is-open'; // 牌組翻開時的class  default = 'is-open'
+  openClass?: 'is-open', // 牌組翻開時的class  default = 'is-open'
+  showTime?: 0, // 遊戲初始化時顯示給玩家看的時間 default = 0(毫秒)
 }
 
 const { $el, addEventListener, removeEventListener } = createMemoryCardGame(config);

@@ -15,6 +15,7 @@ export interface ConfigVM {
   columns?: number; // 一列幾張牌 default = 4
   checkFailedTime?: number; // 驗證失敗後留給使用者看牌面的時間（時間到就翻回去） default = 300
   openClass?: string; // 牌組翻開時的class  default = 'is-open'
+  showTime?: number; // 遊戲初始化時顯示給玩家看的時間 default = 0
 }
 
 export interface CardVM {

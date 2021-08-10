@@ -13,7 +13,7 @@ export {
 };
 
 export const createMemoryCardGame = (config: ConfigVM) => {
-  const { el, backImgSrc, columns = 4, checkFailedTime = 300, openClass = 'is-open' } = config;
+  const { el, backImgSrc, columns = 4, checkFailedTime = 300, openClass = 'is-open', showTime = 0 } = config;
   const $el: JQuery<HTMLElement> = $(el);
 
   const { addEventListener, removeEventListener, dispatchEvent } = createEventManager();
@@ -51,7 +51,7 @@ export const createMemoryCardGame = (config: ConfigVM) => {
     const htmlString = cards.map((card, index) => {
       return `
       ${index % columns === 0 ? '<tr>' : ''}
-        <td selector="card" class="re-memory-card-game__item" data-id="${card.id}">
+        <td selector="card" class="re-memory-card-game__item ${openClass}" data-id="${card.id}">
           <div class="front"><img src="${card.imgSrc}" alt="${card.name}" draggable="false"></div>
           <div class="back"><img src="${backImgSrc}" alt="${card.name}" draggable="false"></div>
         </td>
@@ -64,6 +64,10 @@ export const createMemoryCardGame = (config: ConfigVM) => {
         <tbody>${htmlString}</tbody>
       </table>
     `);
+
+    setTimeout(() => {
+      $(`[selector="card"]`).removeClass(openClass);
+    }, showTime);
   };
 
   const bindEvent = (): void => {
@@ -200,3 +204,12 @@ export const createMemoryCardGame = (config: ConfigVM) => {
     removeEventListener,
   };
 };
+
+
+export function shuffle(array: any[]): any[] {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}

@@ -1,6 +1,6 @@
 {
   "name": "@re/memory-card-game",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "翻牌記憶遊戲",
   "author": "david.jian",
   "license": "MIT",
@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "rm -rf dist && rm -rf build",
     "init": "mkdir dist",
-    "build-parcel": "parcel build demo/index.html --out-dir=build ",
+    "build-parcel": "parcel build demo/index.html --out-dir=build",
     "prebuild": "npm run clean && npm run init && npm run build-parcel",
     "build": "node_modules/typescript/bin/tsc && cp build/*.css dist/index.min.css",
     "dev": "cp -r demo/images build/images && parcel demo/index.html --out-dir=build",

@@ -1,10 +1,11 @@
-import { createMemoryCardGame, EventEnum } from '../src/index';
+import { createMemoryCardGame, EventEnum, shuffle } from '../src/index';
+
 
 const { addEventListener } = createMemoryCardGame({
   el: '#app',
   backImgSrc: './images/img-card-f.png',
   columns: 4,
-  cards: [
+  cards: shuffle([
     { id: '1', name: 'b01', imgSrc: './images/img-card-b01.png' },
     { id: '2', name: 'b01', imgSrc: './images/img-card-b01.png' },
     { id: '3', name: 'b02', imgSrc: './images/img-card-b02.png' },
@@ -21,7 +22,8 @@ const { addEventListener } = createMemoryCardGame({
     { id: '14', name: 'b07', imgSrc: './images/img-card-b07.png' },
     { id: '15', name: 'b08', imgSrc: './images/img-card-b08.png' },
     { id: '16', name: 'b08', imgSrc: './images/img-card-b08.png' },
-  ],
+  ]),
+  showTime: 0
 });
 
 
