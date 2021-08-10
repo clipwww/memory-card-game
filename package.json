@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "rm -rf dist && rm -rf build",
     "init": "mkdir dist",
-    "build-parcel": "parcel build demo/index.html --out-dir=build --public-url https://cdn.jsdelivr.net/gh/clipwww/log@gh-pages/",
+    "build-parcel": "parcel build demo/index.html --out-dir=build --public-url https://cdn.jsdelivr.net/gh/clipwww/memory-card-game@gh-pages/",
     "prebuild": "npm run clean && npm run init && npm run build-parcel",
     "build": "node_modules/typescript/bin/tsc && cp build/*.css dist/index.min.css",
     "dev": "cp -r demo/images build/images && parcel demo/index.html --out-dir=build",
